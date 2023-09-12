@@ -9,11 +9,14 @@
 <body>
     <h1>Etch a Sketch</h1>
     <div class="info">
-        <label for="size">Size of Grid:</label>
-        <input type="number" class="size" maxlength="4" id="size">
-        <button class="sizeBtn">Change size of grid</button>
+        <div class="sizeDim">Size of Grid (16 x 16):</div>
+        <input type="number" class="size" value="16" id="size">
+        <div class="buttons">
+            <button class="sizeBtn">Change size of grid (X x X)</button>
+            <button class="reset">Reset</button>
+        </div>
     </div>
-    <div class="grid"></div>
+    <div class="grid" id="grid"></div>
     <script src="funcs.js" href="style.css"></script>
 </body>
 </html>
