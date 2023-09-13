@@ -2,16 +2,20 @@ const grid = document.querySelector('.grid');
 const sizeBtn = document.querySelector('.sizeBtn');
 const reset = document.querySelector('.reset');
 const sizeDim = document.querySelector('.sizeDim');
+const rainbowBtn = document.querySelector('.rainbowBtn');
+const blackBtn = document.querySelector('.blackBtn');
+blackBtn.style.backgroundColor = "coral";
+let sizeInput = 16;
+let colorOption = "b";
+
 //Change size button - Get the size from input and create a new grid for it
 sizeBtn.addEventListener('click', () => {
-    let sizeInput = document.querySelector('#size').value
+    sizeInput = document.querySelector('#size').value
     console.log(sizeInput);
-    createGrid(document.querySelector('#size').value);
+    createGrid(sizeInput);
     //doesnt work
     //sizeInput = "";
     //works
-    sizeDim.innerHTML = `Size of Grid (${sizeInput} x ${sizeInput})`;
-    document.querySelector('#size').value = "";
 })
 
 //Reset Button - Removes the color styling upon reset.
@@ -23,17 +27,47 @@ reset.addEventListener('click', () => {
     })
 })
 
+rainbowBtn.addEventListener('click', () => {
+    colorOption = "r";
+    rainbowBtn.style.backgroundColor = "coral";
+    blackBtn.style.backgroundColor = "";
+    console.log(colorOption);
+    //sizeInput = document.querySelector('#size').value
+    console.log(sizeInput);
+    //createGrid(sizeInput);
+    // let sizeInput = document.querySelector('#size').value
+    // console.log(sizeInput);
+    // createGrid(sizeInput);
+})
+
+blackBtn.addEventListener('click', () => {
+    colorOption = "b";
+    rainbowBtn.style.backgroundColor = "";
+    blackBtn.style.backgroundColor = "coral";
+    console.log(colorOption);
+    //let sizeInput = document.querySelector('#size').value
+    console.log(sizeInput);
+    //createGrid(sizeInput);
+    // let sizeInput = document.querySelector('#size').value
+    // console.log(sizeInput);
+    // createGrid(sizeInput);
+})
+
+
 let createGrid = (size) => {
+    console.log(colorOption);
+      
     if (size <= 0) {
-        alert("ERROR! Can't have a number <= 0.")
+        alert("ERROR! Can't have a number <= 0.")       
         return;
     }
     if (size > 100) {
         alert("ERROR! Can't have a number > 100 .")
         return;
     }
-    
-    grid.innerHTML = "";
+    sizeDim.innerHTML = `Size of Grid (${size} x ${size})`;
+    //document.querySelector('#size').value = "";
+    grid.innerHTML = "";      
     grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
@@ -42,7 +76,9 @@ let createGrid = (size) => {
         const square = document.createElement('div');
         square.className = 'box';
         square.addEventListener('mouseover', (event) =>{
-            event.target.style.backgroundColor = "black";
+            const randomColor = Math.floor(Math.random()*16777215).toString(16);
+            if (colorOption == "r") {event.target.style.backgroundColor = "#" + randomColor;}
+            else {event.target.style.backgroundColor = "black";}
         })
         grid.appendChild(square);
     }
