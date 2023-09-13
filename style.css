@@ -31,13 +31,19 @@ body {
     padding: 0px;
     margin: 0px;
     line-height: 0px;
+    border: 1px solid rgb(0, 0, 0); 
 }
 
 .info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin:10
+    margin-bottom: 13px;
+}
+
+.info * {
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 h1 {
